@@ -41,7 +41,7 @@ The Dataset will automatically download in the directory you specified.
 
 **3. Water-3D Dataset**
 
-Download this dataset from [link](https://springernature.figshare.com/ndownloader/files/3195389) and place it in your data dir
+Follow the instruction introduced [here](https://github.com/tumaer/lagrangebench/tree/main/gns_data) to download the .tfrecord format Water-3D data and transform them to .h5. Place the .h5 format data in your data directory.
 
 Train and Evaluate Model:
 
@@ -51,7 +51,7 @@ bash run_simulation.sh
 
 **4. QM9 Dataset**
 
-Download this dataset from [link]()
+Download this dataset from [link](https://springernature.figshare.com/ndownloader/files/3195389) and place it in your data directory.
 
 Train and Evaluate Model:
 
