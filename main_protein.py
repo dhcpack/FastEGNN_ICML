@@ -16,6 +16,7 @@ from models.GVP import GVPNet
 from models.SchNet import SchNet
 from models.VNEGNN import VNEGNN
 from models.FastRF import FastRF
+from models.FastTFN import FastTFN
 from models.FastEGNN import FastEGNN
 from models.DimeNet import DimeNet, DimeNetPlusPlus
 from models.basic import EGNN, EGMN, EGHN, GNN, Linear_dynamics, RF_vel
@@ -109,19 +110,20 @@ if __name__ == '__main__':
         model = FastEGNN(node_feat_nf=2, node_attr_nf=0, edge_attr_nf=2, hidden_nf=args.dim_hidden,
                         virtual_channels=args.virtual_channel, device=args.device, n_layers=args.num_layer, residual=True, 
                         attention=args.attention_required, normalize=args.direction_vector_normalize_required, tanh=args.tanh_required)
-    elif args.model == 'VNEGNN':
-        model = VNEGNN(node_feat_nf=2, node_attr_nf=0, edge_attr_nf=2, hidden_nf=args.dim_hidden,
-                        virtual_channels=args.virtual_channel, device=args.device, n_layers=args.num_layer, residual=True, 
-                        attention=args.attention_required, normalize=args.direction_vector_normalize_required, tanh=args.tanh_required)
     elif args.model == 'FastRF':
         model = FastRF(node_feat_nf=2, node_attr_nf=0, edge_attr_nf=2, hidden_nf=args.dim_hidden,
                         virtual_channels=args.virtual_channel, device=args.device, n_layers=args.num_layer, residual=True, 
                         attention=args.attention_required, normalize=args.direction_vector_normalize_required, tanh=args.tanh_required)
+    elif args.model == 'FastTFN':
+        model = FastTFN(node_feat_nf=2, node_attr_nf=0, edge_attr_nf=2, hidden_nf=args.dim_hidden,
+                        virtual_channels=args.virtual_channel, device=args.device, n_layers=args.num_layer, residual=True, 
+                        attention=args.attention_required, normalize=args.direction_vector_normalize_required, tanh=args.tanh_required)
+    elif args.model == 'VNEGNN':
+        model = VNEGNN(node_feat_nf=2, node_attr_nf=0, edge_attr_nf=2, hidden_nf=args.dim_hidden,
+                        virtual_channels=args.virtual_channel, device=args.device, n_layers=args.num_layer, residual=True, 
+                        attention=args.attention_required, normalize=args.direction_vector_normalize_required, tanh=args.tanh_required)
     elif args.model == 'EGNN':
         model = EGNN(n_layers=args.num_layer, in_node_nf=2, in_edge_nf=2, hidden_nf=args.dim_hidden, device=args.device, with_v=True)
-    elif args.model == 'EGMN':
-        assert False
-        model = EGMN(n_layers=args.num_layer, n_vector_input=1, hidden_dim=args.dim_hidden, n_scalar_input=2, device=args.device)
     elif args.model == 'EGHN':
         model = EGHN(in_node_nf=2, in_edge_nf=2, hidden_nf=args.dim_hidden, n_cluster=15, layer_per_block=3, layer_pooling=4, layer_decoder=2, device=args.device, with_v=True)
     elif args.model == 'GNN':
