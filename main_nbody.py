@@ -137,8 +137,8 @@ if __name__ == '__main__':
     optimizer = optim.Adam(model.parameters(), lr=args.learning_rate, weight_decay=args.weight_decay)
 
     log_directory = args.log_directory
-    log_name = f'{args.exp_name}_loss_{log_time_suffix}_tmp_{i + 1}.json'
+    log_name = f'{args.exp_name}_loss_{log_time_suffix}.json'
 
     best_log_dict, log_dict = train(model, loader_train, loader_valid, loader_test, optimizer, loss_mse, sigma=args.sigma,
-                                    weight=args.weight, epochs=args.epochs, device=args.device, test_interval=args.test_interval,
+                                    weight=args.weight, device=args.device, test_interval=args.test_interval, config=args,
                                     log_directory=log_directory, log_name=log_name, early_stop=args.early_stop, sample=args.sample)

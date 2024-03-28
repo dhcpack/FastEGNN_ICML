@@ -1,9 +1,9 @@
 # Sample Shell Script for QM9 Dataset``
 
-data_directory = <Your Data Directory>
-virtual_channel = 3
-cutoff_rate = 0.5
-model = 'FastEGNN'
+data_directory=<Your Data Directory>
+virtual_channel=3
+cutoff_rate=0.5
+model='FastEGNN'
 
 python -u main_qm9.py --num_workers 2 --lr 5e-4 --property alpha --exp_name exp_1_alpha --device 'cpu' --virtual_channel $virtual_channel --cutoff_rate $cutoff_rate --data_dir $data_directory
 python -u main_qm9.py --num_workers 2 --lr 1e-3 --property gap --exp_name exp_1_gap --device 'cpu' --virtual_channel $virtual_channel --cutoff_rate $cutoff_rate --data_dir $data_directory

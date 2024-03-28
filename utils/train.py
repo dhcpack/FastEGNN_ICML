@@ -171,7 +171,7 @@ def train_single_epoch(model, loader, optimizer, loss, sigma, weight, epoch_inde
 
     return result['loss'] / result['counter']
 
-def train(model, loader_train, loader_valid, loader_test, optimizer, loss, epochs, sigma, weight, log_directory, log_name, early_stop=float('inf'), device='cpu', test_interval=5, sample=3, config=None):
+def train(model, loader_train, loader_valid, loader_test, optimizer, loss, sigma, weight, log_directory, log_name, early_stop=float('inf'), device='cpu', test_interval=5, sample=3, config=None):
     log_dict = {'epochs': [], 'loss': [], 'loss_train': []}
     best_log_dict = {'epoch_index': 0, 'loss_valid': 1e8, 'loss_test': 1e8, 'loss_train': 1e8}
 
@@ -189,8 +189,16 @@ def train(model, loader_train, loader_valid, loader_test, optimizer, loss, epoch
             
             if loss_valid < best_log_dict['loss_valid']:
                 best_log_dict = {'epoch_index': epoch_index, 'loss_valid': loss_valid, 'loss_test': loss_test, 'loss_train': loss_train}
-                os.makedirs(f'./state_dict/{model.__class__.__name__}', exist_ok=True)
-                torch.save(model.state_dict(), f'./state_dict/{model.__class__.__name__}/best_model.pth')
+                name = None
+                if config.dataset_name == '100_0_0':
+                    name = 'nbody'
+                elif config.dataset_name == 'adk':
+                    name = 'protein'
+                elif config.dataset_name == 'Water-3D':
+                    name = 'Water-3D'
+
+                os.makedirs(f'./state_dict/{name}', exist_ok=True)
+                torch.save(model.state_dict(), f'./state_dict/{name}/{model.__class__.__name__}_best_model.pth')
             print(f'*** Best Valid Loss: {best_log_dict["loss_valid"] :.5f} | Best Test Loss: {best_log_dict["loss_test"] :.5f} | Best Epoch Index: {best_log_dict["epoch_index"]}')
 
             if epoch_index - best_log_dict['epoch_index'] >= early_stop:

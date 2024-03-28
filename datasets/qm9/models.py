@@ -1,4 +1,4 @@
-from Physion.models.EGNN import E_GCL, unsorted_segment_sum
+from models.basic import E_GCL, unsorted_segment_sum
 import torch
 from torch import nn
 
