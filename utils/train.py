@@ -57,6 +57,12 @@ def train_single_epoch(model, loader, optimizer, loss, sigma, weight, epoch_inde
         elif model.__class__.__name__ == 'FastRF':
             loc_predict, virtual_node_loc = model(node_loc=loc_0, node_vel=vel_0, node_attr=None, node_feat=node_feat, edge_index=edge_index, 
                                                   loc_mean=data['loc_mean'].detach(), data_batch=data['batch'], edge_attr=edge_attr)
+        elif model.__class__.__name__ == 'FastTFN':
+            loc_predict, virtual_node_loc = model(node_loc=loc_0, node_vel=vel_0, node_attr=None, node_feat=node_feat, edge_index=edge_index, 
+                                                  loc_mean=data['loc_mean'].detach(), data_batch=data['batch'], edge_attr=edge_attr, charges=node_attr)
+        elif model.__class__.__name__ == 'FastSchNet':
+            loc_predict, virtual_node_loc = model(node_loc=loc_0, node_vel=vel_0, node_attr=None, node_feat=node_feat, edge_index=edge_index, 
+                                                  loc_mean=data['loc_mean'].detach(), data_batch=data['batch'], edge_attr=edge_attr)
         elif model.__class__.__name__ == 'EGNN':
             out = model(x=loc_0, h=node_feat, edge_index=edge_index, edge_fea=edge_attr, v=vel_0)
             loc_predict = out[0]

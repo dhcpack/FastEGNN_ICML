@@ -18,6 +18,7 @@ from models.VNEGNN import VNEGNN
 from models.FastRF import FastRF
 from models.FastTFN import FastTFN
 from models.FastEGNN import FastEGNN
+from models.FastSchNet import FastSchNet
 from models.DimeNet import DimeNet, DimeNetPlusPlus
 from models.basic import EGNN, EGMN, EGHN, GNN, Linear_dynamics, RF_vel
 from datasets.protein.dataset import MDAnalysisDataset
@@ -116,6 +117,10 @@ if __name__ == '__main__':
                         attention=args.attention_required, normalize=args.direction_vector_normalize_required, tanh=args.tanh_required)
     elif args.model == 'FastTFN':
         model = FastTFN(node_feat_nf=2, node_attr_nf=0, edge_attr_nf=2, hidden_nf=args.dim_hidden,
+                        virtual_channels=args.virtual_channel, device=args.device, n_layers=args.num_layer, residual=True, 
+                        attention=args.attention_required, normalize=args.direction_vector_normalize_required, tanh=args.tanh_required)
+    elif args.model == 'FastSchNet':
+        model = FastSchNet(node_feat_nf=2, node_attr_nf=0, edge_attr_nf=2, hidden_nf=args.dim_hidden,
                         virtual_channels=args.virtual_channel, device=args.device, n_layers=args.num_layer, residual=True, 
                         attention=args.attention_required, normalize=args.direction_vector_normalize_required, tanh=args.tanh_required)
     elif args.model == 'VNEGNN':

@@ -7,7 +7,7 @@ from models.se3_dynamics.models import OursTFN as TFN
 
 class TFN_GCL_vel(nn.Module):
     """
-    E(n) Equivariant Convolutional Layer
+    E(n) Equivariant Convolutional Layer (With TFN)
     """
 
     def __init__(self, node_feat_nf, node_feat_out_nf, node_attr_nf, edge_attr_nf, hidden_nf, virtual_channels, num_degrees=2, 

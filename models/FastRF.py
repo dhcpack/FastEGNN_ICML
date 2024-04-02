@@ -5,7 +5,7 @@ from torch_geometric.nn import global_mean_pool
 
 class E_GCL_vel(nn.Module):
     """
-    E(n) Equivariant Convolutional Layer
+    E(n) Equivariant Convolutional Layer (With RF)
     """
 
     def __init__(self, node_feat_nf, node_feat_out_nf, node_attr_nf, edge_attr_nf, hidden_nf, virtual_channels,
